@@ -1,0 +1,195 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  :root {
+    --text-color: black;
+    --bg-url: url(./assets/bg-mobile-light.jpg);
+    --stroke-color: rgba(0, 0, 0, 0.5); /* red, green, blue e alfa(transparência) */
+    --surface-color: rgba(0, 0, 0, 0.05); /* red, green, blue e alfa(transparência) */
+    --surface-color-hover: rgba(0, 0, 0, 0.02); /* red, green, blue e alfa(transparência) */
+    --highlight-color: rgba(0, 0, 0, 0.1); /* red, green, blue e alfa(transparência) */
+    --switch-bg-url: url(./assets/sun.svg);
+  }
+
+  .dark {
+    --text-color: white;
+    --bg-url: url(./assets/bg-mobile-dark.jpg);
+    --stroke-color: rgba(255, 255, 255, 0.5); /* red, green, blue e alfa(transparência) */
+    --surface-color: rgba(255, 255, 255, 0.1); /* red, green, blue e alfa(transparência) */
+    --surface-color-hover: rgba(255, 255, 255, 0.05); /* red, green, blue e alfa(transparência) */
+    --highlight-color: rgba(255, 255, 255, 0.2); /* red, green, blue e alfa(transparência) */
+    --switch-bg-url: url(./assets/moon-stars.svg);
+  }
+  
+  body {
+    background: var(--bg-url) no-repeat top center/cover;
+    height: 100vh;
+  }
+  
+  body * {
+    font-family: "Inter", Sans-Serif;
+    color: var(--text-color);
+  }
+  
+  #container {
+    width: 100%;
+    max-width: 450px;
+    margin: 56px auto 0px;
+  }
+  
+  /* profite */
+  #profile {
+    text-align: center;
+    padding: 24px;
+  }
+  
+  #profile img {
+    width: 112px;
+  }
+  
+  #profile p {
+    font-weight: 500;
+    line-height: 24px;
+    margin-top: 8px;
+  }
+  
+  /* switch */
+  #switch {
+    position: relative; 
+    width: 64px;
+
+    margin: 4px auto;
+  }
+
+  #switch button {
+    width: 32px;
+    height: 32px;
+    background: white var(--switch-bg-url) no-repeat center;
+    border: 0;
+    border-radius: 50%; /* arredonda o background */
+
+    position: absolute; /* Definir uma posição fixa ao elemento */
+    top: 50%;
+    left: 0;
+    z-index: 1; /* posicionamento do elemento na tela */
+    transform: translateY(-50%);
+
+    animation: slide-back 0.2s; /* não precisa colocar o forwards porque já consta aqui o left: 0 */
+  }
+
+  .dark #switch button {
+    animation: slide-in 0.4s forwards; /* forwards - O elemento manterá os valores de estilo definidos pela última regra definida no keyframes, assim o botão não vai voltar para o início */
+  }
+
+  #switch button:hover {
+    outline: 8px solid var(--highlight-color);
+  }
+
+  #switch span {
+    display: block;
+    width: 64px;
+    height: 24px;
+    background: var(--surface-color);
+    border: 1px solid var(--stroke-color);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px); /*webkit é utilizado para o backdrop-filter funcionar no navegador safari 9 */
+    border-radius: 9999px;
+  }
+
+  /* links */
+  ul {
+    list-style: none; /* remove os pontos da lista */
+    display: flex;
+    flex-direction: column; /* deixa os elementos da lista um abaixo do outro, em coluna */
+    gap: 16px; /* espaço entre os elementos da lista */
+
+    padding: 24px 0;
+  }
+  
+  ul li a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 24px;
+    background: var(--surface-color);
+    border: 1px solid var(--stroke-color);
+    border-radius: 8px;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px); /*webkit é utilizado para o backdrop-filter funcionar no navegador safari 9 */
+    text-decoration: none;
+    font-weight: 500;
+    
+    transition: background 0.2s; /* Coloquei 'background-color' no lugar de 'background' porque estava ficando vermelho */
+  }
+  
+  /* pseudo-selector - passar o mouse em cima*/
+  ul li a:hover {
+    background: var(--surface-color-hover); 
+    border: 1.5px solid var(--text-color);
+  }
+
+  /* Social Links */
+  #social-links {
+    display: flex;
+    justify-content: center;
+
+    padding: 24px 0;
+
+    font-size: 24px;
+  }
+
+  /* centralização do icons */
+  #social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+
+    transition: background 0.2s; 
+    border-radius: 50%;
+  }
+
+  /* pseudo-selector - a bolinha que aparece no icon quando passa o mouse em cima*/
+  #social-links a:hover {
+    background: var(--highlight-color);
+    
+  }
+
+  footer {
+    padding: 24px 0;
+    text-align: center;
+    font-size: 14px;
+  }
+
+  /* media queries */
+  @media (min-width: 700px) {
+    :root {
+      --bg-url: url(./assets/bg-desktop-light.jpg);
+    }
+
+    .dark {
+      --bg-url: url(./assets/bg-desktop-dark.jpg);
+    }
+  }
+
+  /* animation */
+  @keyframes slide-in {
+    from {
+      left: 0;
+    }
+    to {
+      left: 50%;
+    }
+  }
+
+  @keyframes slide-back {
+    from {
+      left: 50%;
+    }
+    to {
+      left: 0;
+    }
+  }
